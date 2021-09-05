@@ -10,7 +10,7 @@ interface ICRUD
 
     public function add();
 
-    public function doAdd();
+    public function doAdd(Request $request);
 
     public function edit($id);
 

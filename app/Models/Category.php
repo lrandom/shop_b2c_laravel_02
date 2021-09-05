@@ -9,4 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory,SoftDeletes;
+
+    protected $fillable = [
+        "parent_id",
+        "name"
+    ];
+
+    public function parentCategory()
+    {
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
+    }
+
 }

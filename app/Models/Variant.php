@@ -9,4 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Variant extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+       'name'
+    ];
+
+    public function variantValues()
+    {
+        return $this->hasMany(VariantValue::class);
+    }
+
 }

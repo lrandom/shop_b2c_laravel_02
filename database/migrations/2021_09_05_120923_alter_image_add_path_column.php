@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableVariantValueProducts extends Migration
+class AlterImageAddPathColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTableVariantValueProducts extends Migration
      */
     public function up()
     {
-        Schema::create('variant_value_products', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        //
+        Schema::table('images', function (Blueprint $table) {
+            $table->string('path');
         });
     }
 
@@ -26,6 +26,9 @@ class CreateTableVariantValueProducts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('variant_value_products');
+        //
+        Schema::table('images', function (Blueprint $table) {
+            $table->dropColumn('path');
+        });
     }
 }
