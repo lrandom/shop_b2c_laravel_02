@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Image extends Model
 {
     use HasFactory,SoftDeletes;
+
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

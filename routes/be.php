@@ -46,6 +46,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/product')->group(function () {
         Route::get('/', [ProductController::class, 'list'])->name('admin.product.list');
+        Route::get('/search', [ProductController::class, 'search'])->name('admin.product.search');
         Route::get('/add', [ProductController::class, 'add'])->name('admin.product.doAdd');
         Route::post('/add', [ProductController::class, 'doAdd'])->name('admin.product.add');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
