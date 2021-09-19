@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('be.layout');
-});
+});*/
 
 require_once __DIR__.'/be.php';//magic constant
+require_once __DIR__ . '/fe.php';
+
+
