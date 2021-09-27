@@ -7,6 +7,15 @@
     {{$product->seo_keyword}}
 @endsection
 @section('content')
+
+
+    <div class="fixed bg-blue-200 right-0 top-0  p-2 rounded text-blue-500 hidden toast-success">Thêm vào giỏ hàng thành
+        công
+    </div>
+    <div class="fixed bg-red-200 right-0 top-0  p-2 rounded text-red-500 hidden toast-failed">Thêm vào giỏ hàng thất
+        bại
+    </div>
+
     <div class="mx-36 my-10">
         <section class="grid grid-cols-7 space-x-5">
         @if($product->images && count($product->images)>0)
@@ -33,10 +42,15 @@
                     {{--  <del class="text-gray-800 text-lg">$100</del>--}}
                 </p>
 
-                <div class="flex space-x-2 items-center font-bold"><span class="bi bi-plus cursor-pointer"></span><input
-                        type="text" readonly="" class="border rounded w-12 text-center font-medium"
-                        value="1"><span class="bi bi-dash cursor-pointer"></span>
-                    <button class="border border-gray-800 text-black p-2 text-xl">Add To Cart</button>
+                <div class="flex space-x-2 items-center font-bold">
+                    <span class="bi bi-plus cursor-pointer" onclick="updateQuantity(1)"></span>
+                    <input
+                        type="text" readonly="" class="quantity border rounded w-12 text-center font-medium"
+                        value="1">
+                    <span onclick="updateQuantity(-1)" class="bi bi-dash cursor-pointer"></span>
+                    <button class="border border-gray-800 text-black p-2 text-xl" onclick="addItemToCart()">Add To
+                        Cart
+                    </button>
                 </div>
 
             </div>
@@ -58,5 +72,46 @@
             </div>
         </section>
     </div>
+
+    <script>
+        function updateQuantity(quantity) {
+            let inputQuantity = parseInt(document.querySelector('.quantity').value);
+            if (quantity == 1) {
+                inputQuantity += parseInt(quantity);
+            } else if (quantity == -1) {
+                if (inputQuantity >= 2) {
+                    inputQuantity += parseInt(quantity);
+                }
+            }
+            document.querySelector('.quantity').value = inputQuantity
+        }
+
+        function addItemToCart() {
+            axios({
+                method: 'post',
+                url: `{{route('api.cart.add',['id'=>$product->id])}}`
+            }).then((resp) => {
+                console.log(resp.data.msg);
+                displayToast(resp.data.msg, '.toast-success');
+
+                const cart = resp.data.cart;
+                document.querySelector('.cart-item-counter').innerHTML = cart.length;
+            }).catch((error) => {
+                displayToast('Thêm vào giỏ hàng thất bại', '.toast-failed');
+            });
+        }
+
+        function displayToast(msg,selector) {
+            const toast = document.querySelector(selector);
+            toast.innerHTML = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('block');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('block');
+            }, 4000);
+        }
+
+    </script>
 
 @endsection

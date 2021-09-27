@@ -12,6 +12,8 @@
     </title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!--AXIOS GỌI API-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -20,11 +22,19 @@
         <img src="https://thumbs.dreamstime.com/b/web-183282388.jpg" alt="logo" class="w-12">
     </div>
 
-    <div class="flex space-x-2 uppercase font-semibold">
+    <div class="flex space-x-2 uppercase font-semibold items-center">
         <div><a href="">Home</a></div>
         <div><a href="">Danh mục</a></div>
         <div><a href="">Đăng ký</a></div>
         <div><a href="">Đăng nhập</a></div>
+
+        <div class="relative">
+            <div>
+                <i class="bi bi-cart2 text-3xl"></i>
+            </div>
+
+            <div class="bg-red-400 text-white -top-2 -right-2 absolute rounded-full text-sm w-6 h-6 flex items-center justify-center cart-item-counter">0</div>
+        </div>
     </div>
 </nav>
 <div class="container mx-auto md:px-0 px-5">
@@ -73,5 +83,16 @@
         </div>
     </div>
 </footer>
+
+<script type="text/javascript">
+    axios({
+        method: 'get',
+        url: `{{route('api.cart.items')}}`
+    }).then((resp) => {
+        const cart = resp.data.cart;
+        document.querySelector('.cart-item-counter').innerHTML = cart.length;
+    }).catch((error) => {
+    });
+</script>
 </body>
 </html>

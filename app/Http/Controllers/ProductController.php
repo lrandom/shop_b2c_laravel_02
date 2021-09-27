@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -24,5 +25,15 @@ class ProductController extends Controller
 
         $mightYouLikeProducts = Product::all();
         return view('fe.products.detail', compact('product', 'mightYouLikeProducts'));
+    }
+
+
+    //danh mục
+    public function category($id)
+    {
+        $products = ($id==-1) ? Product::paginate(16) : Product::where('category_id', $id)->paginate();
+        $category = ($id==-1) ?null : Category::find($id);
+        $allCategory = Category::all();
+        return view('fe.products.category', compact('products','category','allCategory'));
     }
 }
