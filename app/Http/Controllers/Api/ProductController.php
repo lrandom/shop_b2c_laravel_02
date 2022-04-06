@@ -10,7 +10,7 @@ class ProductController extends Controller
 
     public function detail($id)
     {
-        $product = Product::with('image')->find($id);
+        $product = Product::with('images')->find($id);
         $mightYouLikeProducts = Product::with('image')->get();
         return response()->json([
             'product'=>$product,
