@@ -75,6 +75,7 @@ class ProductController extends Controller implements ICRUD
                 );
             }
 
+
             //chèn vào bảng image
             //upload image
             for ($i = 0; $i < count($files); $i++) {
@@ -162,6 +163,7 @@ class ProductController extends Controller implements ICRUD
             //chèn vào bảng image
             //upload image
             $files = $request->file('img');
+            dd($files);
             if ($files && count($files) != 0) {
                 for ($i = 0; $i < count($files); $i++) {
                     $file = $files[$i];
