@@ -283,7 +283,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
 
                     <li class="nav-item menu-open">
-                        <a href="#" class="nav-link active">
+                        <a href="" class="nav-link active">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Product
@@ -292,13 +292,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a   class="nav-link active">
+                                <a  href="{{route('admin.product.list')}}" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a  class="nav-link">
+                                <a href="{{route('admin.product.add')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add</p>
                                 </a>

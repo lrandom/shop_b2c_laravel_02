@@ -18,6 +18,12 @@ use App\Http\Controllers\Api\CartController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::prefix('/v1')->group(function () {
+    Route::get('/home', [\App\Http\Controllers\Api\HomeController::class,
+        'getHome']);
+    Route::get('/products/{id}', [\App\Http\Controllers\Api\ProductController::class,
+        'detail']);
+});
 
 Route::prefix('/cart')->group(function () {
     Route::get('/items', [CartController::class, 'getItems',
