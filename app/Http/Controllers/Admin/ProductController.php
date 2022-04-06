@@ -163,19 +163,24 @@ class ProductController extends Controller implements ICRUD
             //chèn vào bảng image
             //upload image
             $files = $request->file('img');
-            dd($files);
+            //dd($files);
             if ($files && count($files) != 0) {
                 for ($i = 0; $i < count($files); $i++) {
-                    $file = $files[$i];
-                    //upload từng file
-                    $fileName = time() . $i . $file->getClientOriginalName();
-                    $file->storeAs('/products', $fileName, 'public');
-                    //chèn vào bảng image
-                    $image = new Image();
-                    $image->imageable_id = $id;
-                    $image->imageable_type = Product::class;
-                    $image->path = 'storage/products/' . $fileName;
-                    $image->save();
+                    try {
+                        $file = $files[$i];
+                        //upload từng file
+                        $fileName = time() . $i . $file->getClientOriginalName();
+                        $file->storeAs('/products', $fileName, 'public');
+                        //chèn vào bảng image
+                        $image = new Image();
+                        $image->imageable_id = $id;
+                        $image->imageable_type = Product::class;
+                        $image->path = 'storage/products/' . $fileName;
+                        $image->save();
+                    } catch (\Exception $exception) {
+                        dd($exception->getMessage());
+                    }
+
                 }
             }
             DB::commit();
