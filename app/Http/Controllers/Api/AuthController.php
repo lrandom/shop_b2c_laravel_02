@@ -11,13 +11,13 @@ use App\Models\User;
 class AuthController extends Controller
 {
     /**
-     * Log in the user.
+     * API đăng ký
      *
-     * @bodyParam   email    email
-     * @bodyParam   password   password
-     * @bodyParam   phone    sdt đăng nhập
-     * @bodyParam   password   mật khẩu
-     * @bodyParam   full_name   họ tên
+     * @bodyParam   email    <string> required
+     * @bodyParam   password   <string> required
+     * @bodyParam   phone    <string> required
+     * @bodyParam   password   <string> required
+     * @bodyParam   full_name   <string> required
      *
      * @response {
      *  "user": "thong tin đăng ký user",
@@ -48,10 +48,10 @@ class AuthController extends Controller
 
 
     /**
-     * Log in the user.
+     * API đăng ký
      *
-     * @bodyParam   email    email đăng nhập
-     * @bodyParam   password   password đăng nhập
+     * @bodyParam   email
+     * @bodyParam   password
      *
      * @response {
      *  "token": "eyJ0eXA...",
