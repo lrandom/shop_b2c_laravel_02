@@ -14,9 +14,9 @@ class HomeController extends Controller
         $topSoldProducts = Product::with('image')->orderBy('sold', 'DESC')->limit(8)->get();
 
         return response()->json([
-            'lastProducts' =>  $lastProducts->toArray(),
-            'topViewProducts' =>$topViewProducts->toArray(),
-            'topSoldProducts' => $topSoldProducts->toArray()
+            'lastProducts' =>  $lastProducts,
+            'topViewProducts' =>$topViewProducts,
+            'topSoldProducts' => $topSoldProducts
         ], 200);
     }
 }
