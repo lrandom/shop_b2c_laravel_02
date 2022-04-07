@@ -48,10 +48,10 @@ class AuthController extends Controller
 
 
     /**
-     * API đăng ký
+     * API đăng nhập
      *
-     * @bodyParam   email
-     * @bodyParam   password
+     * @bodyParam   email string required
+     * @bodyParam   password string required
      *
      * @response {
      *  "token": "eyJ0eXA...",
