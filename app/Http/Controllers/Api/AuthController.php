@@ -10,7 +10,20 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-
+    /**
+     * Log in the user.
+     *
+     * @bodyParam   email    email
+     * @bodyParam   password   password
+     * @bodyParam   phone    sdt đăng nhập
+     * @bodyParam   password   mật khẩu
+     * @bodyParam   full_name   họ tên
+     *
+     * @response {
+     *  "user": "thong tin đăng ký user",
+     *  "message": "Đăng ký thành công",
+     * }
+     */
     public function signup(Request $request)
     {
         //return response()->json( ['message' => 'Đăng ký không thành công. Vui lòng thử lại'], 400);
@@ -33,6 +46,18 @@ class AuthController extends Controller
             ["user" => $user, 'message' => 'Đăng ký thành công'], 200);
     }
 
+
+    /**
+     * Log in the user.
+     *
+     * @bodyParam   email    email đăng nhập
+     * @bodyParam   password   password đăng nhập
+     *
+     * @response {
+     *  "token": "eyJ0eXA...",
+     *  "message": "Đăng nhập thành công",
+     * }
+     */
     public function login(Request $request)
     {
         $email = $request['email'];
