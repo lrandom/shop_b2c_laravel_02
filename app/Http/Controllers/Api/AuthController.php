@@ -29,6 +29,11 @@ class AuthController extends Controller
         //return response()->json( ['message' => 'Đăng ký không thành công. Vui lòng thử lại'], 400);
         //$validated = $request->validated();
         $validated['password'] = Hash::make($request['password']);
+        if (User::where('email', $request['email'])->first()) {
+            return response()->json(['message' => 'Email đã tồn tại trong hệ thống'],
+                400);
+        }
+
         try {
             $user = User::create([
                 'name' => trim($request->input('email')),
@@ -38,7 +43,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->input('password'))
             ]);
         } catch (\Exception $exception) {
-            return response()->json( ['message' => 'Đăng ký không thành công. Vui lòng thử lại'], 400);
+            return response()->json(['message' => 'Đăng ký không thành công. Vui lòng thử lại'], 400);
         }
 
         //Mail::to($request->email)->send(new ConfirmUser($user));
