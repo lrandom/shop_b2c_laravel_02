@@ -31,7 +31,7 @@ class AuthController extends Controller
         $validated['password'] = Hash::make($request['password']);
         if (User::where('email', $request['email'])->first()) {
             return response()->json(['message' => 'Email đã tồn tại trong hệ thống'],
-                400);
+                503);
         }
 
         try {
