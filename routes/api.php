@@ -26,7 +26,7 @@ Route::prefix('/v1')->group(function () {
         'detail']);
     Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
     Route::post('/signup', [\App\Http\Controllers\Api\AuthController::class, 'signup']);
-    Route::post('/make-order', [\App\Http\Controllers\Api\OrderController::class, 'makeOrder']);
+    Route::middleware('auth:api')->post('/make-order', [\App\Http\Controllers\Api\OrderController::class, 'makeOrder']);
 });
 
 Route::prefix('/cart')->group(function () {
