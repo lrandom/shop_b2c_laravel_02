@@ -15,7 +15,7 @@ class AlterOrdersTable extends Migration
     {
         //
         Schema::table('orders', function (Blueprint $table) {
-            $table->double('total')->nullable()->change();
+            $table->double('total');
         });
     }
 
