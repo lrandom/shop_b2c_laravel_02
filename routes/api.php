@@ -24,8 +24,9 @@ Route::prefix('/v1')->group(function () {
         'getHome']);
     Route::get('/products/{id}', [\App\Http\Controllers\Api\ProductController::class,
         'detail']);
-    Route::post('/login',[\App\Http\Controllers\Api\AuthController::class,'login']);
-    Route::post('/signup', [\App\Http\Controllers\Api\AuthController::class,'signup']);
+    Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+    Route::post('/signup', [\App\Http\Controllers\Api\AuthController::class, 'signup']);
+    Route::post('/make-order', [\App\Http\Controllers\Api\OrderController::class, 'makeOrder']);
 });
 
 Route::prefix('/cart')->group(function () {
