@@ -43,7 +43,7 @@ class OrderController
         } catch (\Exception $exception) {
             DB::rollBack();
             return response()->json([
-                'message' => 'Không thể đặt hàng. Vui lòng thử lại' + $exception->getMessage()
+                'message' => 'Không thể đặt hàng. Vui lòng thử lại' . $exception->getMessage()
             ], 503);
         }
     }
