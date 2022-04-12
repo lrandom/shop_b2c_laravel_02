@@ -48,4 +48,11 @@ class OrderController
         }
     }
 
+
+    function getMyOrders(Request $request)
+    {
+        $user = $request->user();
+        $orders = Order::where('user_id', $user->id)->paginte();
+        return response()->json($orders, 200);
+    }
 }
