@@ -69,7 +69,7 @@ class OrderController
         $user = $request->user();
         $orders = Order::with('products')
             ->where('user_id', $user->id)
-            ->where('id', $orderId)->get();
+            ->where('id', $orderId)->first();
         return response()->json($orders, 200);
     }
 }
