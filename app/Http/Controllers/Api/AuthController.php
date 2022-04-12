@@ -80,6 +80,28 @@ class AuthController extends Controller
         }
         return response()->json(['message' => 'Đăng nhập thất bại, Eamil chưa được đăng ký hoặc mật khẩu không đúng'], 400);
     }
+
+    public function updateProfile(Request $request)
+    {
+        $user = $request->user();
+        if (
+            User::where('email', $request->email)->first() != null
+            && User::where('email', $request->email)->first()->id != $user->id
+        ) {
+            return response()->json(['message' => 'Email đã tồn tại trong hệ thống'],
+                503);
+        }
+        if (User::where('phone', $request->phone)->first() != null
+            && User::where('phone', $request->phone)->first() != $user->id
+        ) {
+            return response()->json(['message' => 'Phone đã tồn tại trong hệ thống'],
+                503);
+        }
+        $user->full_name = $request->full_name;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->save();
+    }
 }
 
 ?>
