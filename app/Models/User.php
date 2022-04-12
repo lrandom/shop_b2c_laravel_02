@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function getFullAvatarPathAttribute()
     {
-        return asset('storage/avatar/' . $this->avatar);
+        return asset( $this->avatar);
     }
 }
