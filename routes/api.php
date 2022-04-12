@@ -22,7 +22,7 @@ Route::prefix('/v1')->group(function () {
     });
     Route::get('/home', [\App\Http\Controllers\Api\HomeController::class,
         'getHome']);
-    Route::get('/products/{id}', [\App\Http\Controllersllers\Api\ProductController::class,
+    Route::get('/products/{id}', [\App\Http\Controllers\Api\ProductController::class,
         'detail']);
     Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
     Route::post('/signup', [\App\Http\Controllers\Api\AuthController::class, 'signup']);
