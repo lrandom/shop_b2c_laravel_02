@@ -101,7 +101,8 @@ class AuthController extends Controller
         $user->phone = $request->phone;
         $user->email = $request->email;
         $user->save();
-        return response()->json(['message' => 'Cập nhật thành công','user'=>$user], 200);
+        return response()->json(
+            ['message' => 'Cập nhật thành công','user'=>$user],
             200);
     }
 }
