@@ -52,7 +52,7 @@ class OrderController
     function getMyOrders(Request $request)
     {
         $user = $request->user();
-        $orders = Order::where('user_id', $user->id)->paginate();
+        $orders = Order::where('user_id', $user->id)->paginate(15);
         return response()->json($orders, 200);
     }
 }
