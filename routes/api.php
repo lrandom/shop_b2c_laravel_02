@@ -28,7 +28,7 @@ Route::prefix('/v1')->group(function () {
     Route::post('/signup', [\App\Http\Controllers\Api\AuthController::class, 'signup']);
     Route::middleware('auth:api')->post('/make-order', [\App\Http\Controllers\Api\OrderController::class, 'makeOrder']);
     Route::middleware('auth:api')->get('/my-orders', [\App\Http\Controllers\Api\OrderController::class, 'getMyOrders']);
-    Route::put('auth:api')->post('/update-profile', [\App\Http\Controllers\Api\AuthController::class, 'updateProfile']);
+    Route::middleware('auth:api')->put('/update-profile', [\App\Http\Controllers\Api\AuthController::class, 'updateProfile']);
 });
 
 Route::prefix('/cart')->group(function () {
