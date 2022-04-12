@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'user_id',
         'sub_total',
@@ -19,4 +20,10 @@ class Order extends Model
         'phone',
         'name',
         'status'];
+
+
+    public function products()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
 }
