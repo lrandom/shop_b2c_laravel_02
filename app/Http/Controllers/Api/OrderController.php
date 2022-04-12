@@ -52,7 +52,24 @@ class OrderController
     function getMyOrders(Request $request)
     {
         $user = $request->user();
-        $orders = Order::with('products')->where('user_id', $user->id)->paginate(15);
+        $status = $request->query('status') ?? null;
+
+        $query = Order::with('products')
+            ->where('user_id', $user->id);
+        if ($status) {
+            $query->where('status', $status);
+        }
+        $orders = $query->paginate(15);
+        return response()->json($orders, 200);
+    }
+
+
+    function myOrderDetail($orderId, Request $request)
+    {
+        $user = $request->user();
+        $orders = Order::with('products')
+            ->where('user_id', $user->id)
+            ->where('id', $orderId)->get();
         return response()->json($orders, 200);
     }
 }
