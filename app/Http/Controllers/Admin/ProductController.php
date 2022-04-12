@@ -49,7 +49,6 @@ class ProductController extends Controller implements ICRUD
             return redirect()->back()->with('error', 'Vui lòng chọn ít nhất một hình ảnh');
         }
 
-
         try {
             DB::beginTransaction();
             //xử lý dữ liệu để chèn vào product

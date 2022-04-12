@@ -11,7 +11,7 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
-
+    public $appends = ['full_avatar_path'];
     /**
      * The attributes that are mass assignable.
      *
@@ -44,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullAvatarPathAttribute()
+    {
+        return asset('storage/avatar/' . $this->avatar);
+    }
 }

@@ -102,8 +102,24 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->save();
         return response()->json(
-            ['message' => 'Cập nhật thành công','user'=>$user],
+            ['message' => 'Cập nhật thành công', 'user' => $user],
             200);
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
+            $user = $request->user();
+            $fileName = time() . $file->getClientOriginalName();
+            $file->storeAs('/avatar', $fileName, 'public');
+            $savedUser = User::find($user->id);
+            $savedUser->path = 'storage/avatar/' . $fileName;
+            $savedUser->save();
+            return response()->json(
+                ['message' => 'Cập nhật avatar thành công', 'user' => $user],
+                200);
+        }
     }
 }
 
