@@ -92,7 +92,7 @@ class AuthController extends Controller
                 503);
         }
         if (User::where('phone', $request->phone)->first() != null
-            && User::where('phone', $request->phone)->first() != $user->id
+            && User::where('phone', $request->phone)->first()->id != $user->id
         ) {
             return response()->json(['message' => 'Phone đã tồn tại trong hệ thống'],
                 503);
