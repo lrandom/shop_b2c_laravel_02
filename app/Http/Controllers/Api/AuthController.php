@@ -120,6 +120,9 @@ class AuthController extends Controller
                 ['message' => 'Cập nhật avatar thành công', 'user' => $user],
                 200);
         }
+        return response()->json(
+            ['message' => 'Cập nhật avatar thất bại'],
+            400);
     }
 }
 
