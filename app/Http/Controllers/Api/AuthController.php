@@ -114,7 +114,7 @@ class AuthController extends Controller
             $fileName = time() . $file->getClientOriginalName();
             $file->storeAs('/avatar', $fileName, 'public');
             $savedUser = User::find($user->id);
-            $savedUser->path = 'storage/avatar/' . $fileName;
+            $savedUser->avatar = 'storage/avatar/' . $fileName;
             $savedUser->save();
             return response()->json(
                 ['message' => 'Cập nhật avatar thành công', 'user' => $user],
