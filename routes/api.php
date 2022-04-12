@@ -31,7 +31,7 @@ Route::prefix('/v1')->group(function () {
     Route::middleware('auth:api')->put('/update-profile', [\App\Http\Controllers\Api\AuthController::class, 'updateProfile']);
     Route::middleware('auth:api')->get('/my-orders/{id}', [\App\Http\Controllers\Api\OrderController::class, 'myOrderDetail']);
     Route::get('/category', [\App\Http\Controllers\Api\CategoryController::class, 'getCategories']);
-    Route::get('/products/${categoryId}', [\App\Http\Controllers\Api\ProductController::class, 'getProductsByCategoryId']);
+    Route::get('/products/category/${categoryId}', [\App\Http\Controllers\Api\ProductController::class, 'getProductsByCategoryId']);
 });
 
 Route::prefix('/cart')->group(function () {
