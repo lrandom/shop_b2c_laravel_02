@@ -33,6 +33,7 @@ Route::prefix('/v1')->group(function () {
     Route::middleware('auth:api')->post('/add-message', [\App\Http\Controllers\Api\ChatController::class, 'addMess']);
     Route::middleware('auth:api')->get('/list-messages', [\App\Http\Controllers\Api\ChatController::class, 'getListMess']);
     Route::middleware('auth:api')->get('/new-messages/{id}', [\App\Http\Controllers\Api\ChatController::class, 'getNewMess']);
+    Route::middleware('auth:api')->get('/old-messages/{id}', [\App\Http\Controllers\Api\ChatController::class, 'getOldMess']);
     Route::get('/category', [\App\Http\Controllers\Api\CategoryController::class, 'getCategories']);
     Route::get('/products/category/{categoryId}', [\App\Http\Controllers\Api\ProductController::class, 'getProductsByCategoryId']);
     Route::middleware('auth:api')->post('/update-avatar', [\App\Http\Controllers\Api\AuthController::class, 'updateAvatar']);
