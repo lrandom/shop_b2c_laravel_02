@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use JWTAuth;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -65,18 +66,17 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $email = $request['email'];
-        $password = $request['password'];
-        $check = Auth::attempt([
-            'email' => $email,
-            'password' => $password,
-        ]);
-        if ($check) {
-            $user = User::where('email', $email)->first();
-            if ($user) {
-                $accessToken = $user->createToken('poco')->accessToken;
-                return response()->json(['token' => $accessToken, 'message' => 'Đăng nhập thành công'], 200);
-            }
+        //$email = $request['email'];
+        //$password = $request['password'];
+        $credentials = $request->only('email', 'password');
+        $token = JWTAuth::attempt($credentials);
+
+        if ($token) {
+            //$user = User::where('email', $email)->first();
+            //if ($user) {
+                //$accessToken = $user->createToken('poco')->accessToken;
+                return response()->json(['token' => $token, 'message' => 'Đăng nhập thành công'], 200);
+            //}
         }
         return response()->json(['message' => 'Đăng nhập thất bại, Eamil chưa được đăng ký hoặc mật khẩu không đúng'], 400);
     }

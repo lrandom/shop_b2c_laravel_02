@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     public $appends = ['full_avatar_path'];
@@ -49,4 +51,21 @@ class User extends Authenticatable
     {
         return asset( $this->avatar);
     }
+
+    public function getJWTIdentifier()
+    {
+        // TODO: Implement getJWTIdentifier() method.
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        // TODO: Implement getJWTCustomClaims() method.
+        return [
+            'email' => $this->email,
+            'full_name'=>$this->full_name
+        ];
+    }
+
+
 }
