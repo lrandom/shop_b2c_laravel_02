@@ -19,7 +19,7 @@ class ChatController extends Controller
         $chat->save();
         return response()->json(['success' => true, 'message' => 'Thêm thành công']);
     }
-    public function getListMess($id)
+    public function getListMess()
     {
         $listMess = Message::orderBy('id','DESC')->skip(0)->take(10)->get()->reverse();
         return response()->json([
