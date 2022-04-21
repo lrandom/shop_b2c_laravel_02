@@ -21,7 +21,7 @@ class ChatController extends Controller
     }
     public function getListMess()
     {
-        $listMess = Message::orderBy('id','DESC')->skip(0)->take(10)->get()->reverse();
+        $listMess = Message::orderBy('id','DESC')->skip(0)->take(10)->get();
         return response()->json([
             'messages' => $listMess,
         ]);
