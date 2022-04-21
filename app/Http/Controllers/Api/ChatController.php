@@ -26,4 +26,11 @@ class ChatController extends Controller
             'messages' => $listMess,
         ]);
     }
+    public function getNewMess($lastId)
+    {
+        $listNewMess = Message::where('id','>',$lastId)->get();
+        return response()->json([
+            'messages' => $listNewMess,
+        ]);
+    }
 }
